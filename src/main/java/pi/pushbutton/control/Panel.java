@@ -10,8 +10,9 @@ import com.pi4j.io.gpio.GpioProvider;
 import com.pi4j.io.gpio.Pin;
 
 public class Panel extends ObserveableComponentBase {
-	PushButtonWithLED red, green, blue, yellow, white;
+	protected PushButtonWithLED red, green, blue, yellow, white;
 	Pin redPin, greenPin, bluePin, yellowPin, whitePin;
+	protected final PushButtonWithLED[] allPushButtonWithLEDs;
 
 	public Panel(GpioController gpio, GpioProvider providerForButtons,
 			GpioProvider providerForLEDs) {
@@ -26,8 +27,8 @@ public class Panel extends ObserveableComponentBase {
 				providerForLEDs, yellowPin);
 		white = new PushButtonWithLED(gpio, providerForButtons, whitePin,
 				providerForLEDs, whitePin);
-		PushButtonWithLED[] allPushButtonWithLEDs = { red, green, blue, yellow,
-				white };
+		allPushButtonWithLEDs = new PushButtonWithLED[] { red, green, blue,
+				yellow, white };
 		if (this instanceof SwitchListener) {
 			for (PushButtonWithLED pushButtonWithLED : allPushButtonWithLEDs) {
 				pushButtonWithLED.addListener((SwitchListener) this);
