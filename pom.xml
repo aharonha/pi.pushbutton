@@ -19,6 +19,7 @@
   		<groupId>com.pi4j</groupId>
   		<artifactId>pi4j-i2c-device</artifactId>
   		<version>1.0-SNAPSHOT</version>
+  		<scope>provided</scope>
   	</dependency>
   </dependencies>
 </project>
