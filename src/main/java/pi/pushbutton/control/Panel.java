@@ -22,7 +22,7 @@ public class Panel extends ObserveableComponentBase {
 
 	public Panel(GpioController gpio, GpioProvider providerForButtons,
 			GpioProvider providerForLEDs) {
-		String providerName = "panel";
+		String providerName = providerForButtons.getName();
 		redPin = new PinImpl(providerName, 0, "red", DIGITAL_IO_MODES);
 		greenPin = new PinImpl(providerName, 1, "green", DIGITAL_IO_MODES);
 		bluePin = new PinImpl(providerName, 2, "blue", DIGITAL_IO_MODES);
