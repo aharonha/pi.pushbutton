@@ -1,7 +1,5 @@
 package pi.pushbutton.control;
 
-import java.util.EnumSet;
-
 import pi.pushbutton.PushButtonWithLED;
 
 import com.pi4j.component.ObserveableComponentBase;
@@ -10,14 +8,11 @@ import com.pi4j.component.switches.SwitchListener;
 import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioProvider;
 import com.pi4j.io.gpio.Pin;
-import com.pi4j.io.gpio.PinMode;
 
 public class Panel extends ObserveableComponentBase {
 	protected PushButtonWithLED red, green, blue, yellow, white;
 	// final Pin redPin, greenPin, bluePin, yellowPin, whitePin;
 	protected final PushButtonWithLED[] allPushButtonWithLEDs;
-	protected final static EnumSet<PinMode> DIGITAL_IO_MODES = EnumSet.of(
-			PinMode.DIGITAL_INPUT, PinMode.DIGITAL_OUTPUT);
 
 	public Panel(GpioController gpio, GpioProvider providerForButtons,
 			GpioProvider providerForLEDs, Pin redButtonPin, Pin greenButtonPin,
