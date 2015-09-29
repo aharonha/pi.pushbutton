@@ -1,6 +1,5 @@
 package pi.pushbutton;
 
-import java.util.Optional;
 import java.util.concurrent.Future;
 
 import com.pi4j.component.ObserveableComponentBase;
@@ -34,6 +33,9 @@ public class PushButtonWithLED extends ObserveableComponentBase implements LED,
 		ledComponent = new GpioLEDComponent(gpio.provisionDigitalOutputPin(
 				providerForLED, led, name));
 		super.setName(name);
+		switchComponent.setName(name);
+		ledComponent.setName(name);
+
 	}
 
 	@Override
@@ -110,11 +112,5 @@ public class PushButtonWithLED extends ObserveableComponentBase implements LED,
 	@Override
 	public Future<?> pulse(long duration, boolean blocking) {
 		return ledComponent.pulse(duration, blocking);
-	}
-
-	@Override
-	public String getName() {
-		return Optional.ofNullable(super.getName()).orElse(
-				switchComponent.getName());
 	}
 }
