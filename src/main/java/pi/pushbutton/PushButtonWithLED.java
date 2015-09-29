@@ -23,10 +23,16 @@ public class PushButtonWithLED extends ObserveableComponentBase implements LED,
 	public PushButtonWithLED(GpioController gpio,
 			GpioProvider providerForButton, Pin button,
 			GpioProvider providerForLED, Pin led) {
+		this(gpio, providerForButton, button, providerForLED, led, null);
+	}
+
+	public PushButtonWithLED(GpioController gpio,
+			GpioProvider providerForButton, Pin button,
+			GpioProvider providerForLED, Pin led, String name) {
 		switchComponent = new GpioMomentarySwitchComponent(
-				gpio.provisionDigitalInputPin(providerForButton, button));
+				gpio.provisionDigitalInputPin(providerForButton, button, name));
 		ledComponent = new GpioLEDComponent(gpio.provisionDigitalOutputPin(
-				providerForLED, led));
+				providerForLED, led, name));
 	}
 
 	@Override
