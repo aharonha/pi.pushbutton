@@ -30,6 +30,7 @@ public class PushButtonWithLED extends ObserveableComponentBase implements LED,
 			GpioProvider providerForLED, Pin led, String name) {
 		switchComponent = new GpioMomentarySwitchComponent(
 				gpio.provisionDigitalInputPin(providerForButton, button, name));
+
 		ledComponent = new GpioLEDComponent(gpio.provisionDigitalOutputPin(
 				providerForLED, led, name));
 		super.setName(name);
@@ -112,5 +113,15 @@ public class PushButtonWithLED extends ObserveableComponentBase implements LED,
 	@Override
 	public Future<?> pulse(long duration, boolean blocking) {
 		return ledComponent.pulse(duration, blocking);
+	}
+
+	public SwitchListener turnLedOnWhenPressed() {
+		return event -> {
+			if (event.getNewState() == SwitchState.ON) {
+				on();
+			} else {
+				off();
+			}
+		};
 	}
 }
